@@ -1,8 +1,11 @@
 package com.worldvisit.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.worldvisit.R
@@ -16,14 +19,20 @@ import retrofit2.Response
 
 
 class CountriesActivity : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_countries)
 
         Log.d("onCreate", "CountriesActivity OK")
 
+
         // use retrofit to get countries list from web
         getCountries()
+
+
+
 
         // TEST BDD
 //        AppDatabaseHelper.getDatabase(this).countryDAO().getListCountries()

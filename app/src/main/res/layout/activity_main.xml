@@ -9,10 +9,27 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="WELCOME TO THE WORLD!"
+        android:text="Bienvenue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <Button
+        android:id="@+id/button_countries"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#F44336"
+        android:padding="16dp"
+        android:text="Liste des pays"
+        android:textColor="@android:color/white"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

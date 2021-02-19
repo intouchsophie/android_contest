@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.worldvisit.R
+import com.worldvisit.bdd.AppDatabaseHelper
+import com.worldvisit.bdd.CountryDTO
 import com.worldvisit.webservice.RetourWSGetCountry
 
 class CountriesAdapter(private var listCountries: List<RetourWSGetCountry>) :
@@ -34,6 +36,9 @@ RecyclerView.Adapter<CountriesAdapter.CountriesViewHolder>()
             textViewNameCountry.setOnClickListener {
                 val country = listCountries[adapterPosition]
                 Log.d("montag", country.name)
+                // AJOUTER PAYS EN BASE
+                // AppDatabaseHelper.getDatabase(this).countryDAO().insert(CountryDTO(0, country.name, country.capital, country.region, country.alphaCode))
+
             }
         }
     }

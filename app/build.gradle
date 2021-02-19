@@ -5,7 +5,8 @@ plugins {
     id 'kotlin-kapt'
 }
 
-//apply plugin: 'kotlin-android-extensions'
+// LOCAL DATA
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 30
@@ -57,6 +58,9 @@ dependencies {
     // retrofit for WEBSERVICES
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+	
+	// recyclerView
+	implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
     // RECYCLER VIEW
     implementation 'androidx.recyclerview:recyclerview:1.1.0'

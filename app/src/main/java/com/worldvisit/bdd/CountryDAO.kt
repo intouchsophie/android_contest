@@ -2,6 +2,7 @@ package com.worldvisit.bdd
 
 import androidx.room.*
 
+
 @Dao
 abstract class CountryDAO {
     @Query("SELECT * FROM country")
