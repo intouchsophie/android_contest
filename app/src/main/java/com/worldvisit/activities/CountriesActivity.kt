@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.FragmentTransaction
 import com.worldvisit.R
+import com.worldvisit.bdd.AppDatabaseHelper
 import com.worldvisit.fragments.CountriesFragment
 import com.worldvisit.webservice.*
 import retrofit2.Call
@@ -22,6 +23,10 @@ class CountriesActivity : AppCompatActivity() {
 
         // use retrofit to get countries list from web
         getCountries()
+
+        // TEST BDD
+        AppDatabaseHelper.getDatabase(this).countryDAO().getListCountries()
+
 
         // fragment :
         val fragment = CountriesFragment()
@@ -54,23 +59,11 @@ class CountriesActivity : AppCompatActivity() {
                     {
 
                         Log.d("response", "isSuccessful")
-
                         val listWSCountries=response.body()
-
                         Log.d("webserviceSuccess", "$listWSCountries" )
-//                        mainListCars = listWSCars!!
-//                        callCarsAdapter(mainListCars)
-//                        if (favoritesSwitch.isChecked) {
-//                            list_cars.visibility=View.INVISIBLE
-//                            fav_list_cars.visibility = View.VISIBLE
-//                            fav_title.visibility = View.VISIBLE
+                        Log.d("first", "$listWSCountries[0]" )
 
 
-
-
-
-                        val retourWSGet = response.body()
-                        Log.d("tag", "$retourWSGet")
                     }
                 }
 
