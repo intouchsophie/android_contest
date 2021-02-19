@@ -5,8 +5,9 @@ import retrofit2.http.*
 
 interface WSInterface {
     // appel get :
-    @GET("rest/v2/all")
-    fun wsGetCountries(): Call<RetourWSGetCountries>
+    @GET("rest/v2/all?fields=name;capital")
+
+    fun wsGetCountries(): Call<List<RetourWSGetCountry>>
 //    fun wsGet(
 //        @Query("param1") param1: String,
 //        @Query("param2") param2: String): Call<RetourWSGetCountries>

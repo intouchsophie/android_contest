@@ -6,13 +6,11 @@ import android.util.Log
 import androidx.fragment.app.FragmentTransaction
 import com.worldvisit.R
 import com.worldvisit.fragments.CountriesFragment
-import com.worldvisit.webservice.RetourWSGetCountries
-import com.worldvisit.webservice.ReseauHelper
-import com.worldvisit.webservice.RetrofitSingleton
-import com.worldvisit.webservice.WSInterface
+import com.worldvisit.webservice.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.random.Random
 
 
 class CountriesActivity : AppCompatActivity() {
@@ -46,20 +44,41 @@ class CountriesActivity : AppCompatActivity() {
         val call = service.wsGetCountries()
 
         if (ReseauHelper.estConnecte(this)) {
-            call.enqueue(object : Callback<RetourWSGetCountries>
+            call.enqueue( object : Callback<List<RetourWSGetCountry>>
             {
-                override fun onResponse(call: Call<RetourWSGetCountries>, response: Response<RetourWSGetCountries>)
-                {
+                override fun onResponse(
+                    call: Call<List<RetourWSGetCountry>>,
+                    response: Response<List<RetourWSGetCountry>>
+                ) {
                     if (response.isSuccessful)
                     {
+
+                        Log.d("response", "isSuccessful")
+
+                        val listWSCountries=response.body()
+
+                        Log.d("webserviceSuccess", "$listWSCountries" )
+//                        mainListCars = listWSCars!!
+//                        callCarsAdapter(mainListCars)
+//                        if (favoritesSwitch.isChecked) {
+//                            list_cars.visibility=View.INVISIBLE
+//                            fav_list_cars.visibility = View.VISIBLE
+//                            fav_title.visibility = View.VISIBLE
+
+
+
+
+
                         val retourWSGet = response.body()
                         Log.d("tag", "$retourWSGet")
                     }
                 }
-                override fun onFailure(call: Call<RetourWSGetCountries>, t: Throwable)
-                {
+
+                override fun onFailure(call: Call<List<RetourWSGetCountry>>, t: Throwable) {
+                    Log.d("myresponse", "failed")
                     Log.e("tag", "${t.message}")
                 }
+
             })
         }
 
