@@ -4,14 +4,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.worldvisit.R
-import com.worldvisit.bdd.AppDatabaseHelper
+import com.worldvisit.adapters.CountriesAdapter
 import com.worldvisit.fragments.CountriesFragment
 import com.worldvisit.webservice.*
+import kotlinx.android.synthetic.main.fragment_countries.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.random.Random
 
 
 class CountriesActivity : AppCompatActivity() {
@@ -25,7 +26,9 @@ class CountriesActivity : AppCompatActivity() {
         getCountries()
 
         // TEST BDD
-        AppDatabaseHelper.getDatabase(this).countryDAO().getListCountries()
+//        AppDatabaseHelper.getDatabase(this).countryDAO().getListCountries()
+
+
 
 
         // fragment :
@@ -61,13 +64,49 @@ class CountriesActivity : AppCompatActivity() {
                         Log.d("response", "isSuccessful")
                         val listWSCountries=response.body()
                         Log.d("webserviceSuccess", "$listWSCountries" )
-                        Log.d("first", "$listWSCountries[0]" )
+                        Log.d("first", "$listWSCountries" )
+
+
+
+
+                        // ADAPTER
+                        // à ajouter pour de meilleures performances :
+                        list_countries.setHasFixedSize(true)
+                        // layout manager, décrivant comment les items sont disposés :
+                        val layoutManager = LinearLayoutManager(this@CountriesActivity)
+                        list_countries.layoutManager = layoutManager
+                        // contenu d'exemple :
+                        //        val listeCourses: MutableList<Course> = ArrayList()
+                        //        listeCourses.add(Course("Pommes"))
+                        //        listeCourses.add(Course("Poires"))
+
+
+
+                        // adapter :
+                        val coursesAdapter = listWSCountries?.let { CountriesAdapter(it) }
+                        list_countries.adapter = coursesAdapter
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                     }
                 }
 
-                override fun onFailure(call: Call<List<RetourWSGetCountry>>, t: Throwable) {
+                override fun onFailure(call: Call<List<RetourWSGetCountry>?>, t: Throwable) {
                     Log.d("myresponse", "failed")
                     Log.e("tag", "${t.message}")
                 }
